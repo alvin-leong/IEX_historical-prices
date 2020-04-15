@@ -15,6 +15,7 @@ import shutil
 import json
 import io
 import os
+from pathlib import Path
 
 # --------------------------------------------------------------------------------------------------
 # Function Definitions
@@ -185,11 +186,14 @@ async def download_tickers_asynchronous(params):
 # --------------------------------------------------------------------------------------------------
 # Execution
 # --------------------------------------------------------------------------------------------------
+# Use path of cwd to get at /script/config.json
+ptest = Path.cwd()
+q = ptest / 'script' / 'config.json'
 
 # Conduct an asynchronous download session for each date
 if __name__ == '__main__':
 
-    with open('/script/config.json') as config_file:
+    with open(q) as config_file:
         data = json.load(config_file)
         os.environ['TOKEN'] = data['TOKEN']
 
