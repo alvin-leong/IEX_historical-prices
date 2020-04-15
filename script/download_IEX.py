@@ -189,7 +189,7 @@ async def download_tickers_asynchronous(params):
 # Conduct an asynchronous download session for each date
 if __name__ == '__main__':
 
-    with open('config.json') as config_file:
+    with open('/script/config.json') as config_file:
         data = json.load(config_file)
         os.environ['TOKEN'] = data['TOKEN']
 
