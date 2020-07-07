@@ -17,6 +17,9 @@ import io
 import os
 from pathlib import Path
 
+import sys
+
+
 # --------------------------------------------------------------------------------------------------
 # Function Definitions
 # --------------------------------------------------------------------------------------------------
@@ -155,7 +158,8 @@ def asyncio_prep(date_str):
     base_url = 'https://cloud.iexapis.com/stable/stock/{}/chart/date/{}?format=csv&token={}&chartIEXOnly=true'
 
     path = get_path(date_str)
-    tickers = ['AAPL','TSLA']
+    # tickers = ['AAPL','TSLA']
+    tickers = sys.argv
     # tickers = get_tickers(path)
     api_urls = [base_url.format(ticker, date_str, os.environ['TOKEN']) for ticker in tickers]
     params = {'date_str': date_str, 'path': path, 'tickers': tickers, 'api_urls': api_urls}
