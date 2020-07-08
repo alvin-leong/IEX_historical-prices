@@ -54,7 +54,7 @@ def get_dates():
 
         for i in range(len(folder_CW)):
             foldernames = os.listdir('output/{}/{}'.format(year, folder_CW[i]))
-            folder_date += [name for name in foldernames if not name.startswith('.')]
+            folder_date += [name for name in foldernames if name.startswith('2')]
         last_date = datetime.strptime(max(folder_date)[0:8], '%Y%m%d').date()
 
         start_date = max(IEX_date, last_date + timedelta(days=1))
