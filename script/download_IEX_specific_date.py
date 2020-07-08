@@ -43,7 +43,7 @@ def get_dates():
     
     # Get earliest date available on IEX side
     date_today = datetime.today().date()
-    latest_date = datetime.strptime(sys.argv[0],'%Y-%m-%d').date()
+    latest_date = datetime.strptime(sys.argv[1],'%Y-%m-%d').date()
     delta = date_today - latest_date
 
     IEX_date = date_today - delta # get latest date from df
@@ -162,7 +162,7 @@ def asyncio_prep(date_str):
 
     path = get_path(date_str)
     # tickers = ['AAPL','TSLA']
-    tickers = sys.argv[1]
+    tickers = sys.argv[2]
     # tickers = get_tickers(path)
     api_urls = [base_url.format(ticker, date_str, os.environ['TOKEN']) for ticker in tickers]
     params = {'date_str': date_str, 'path': path, 'tickers': tickers, 'api_urls': api_urls}
