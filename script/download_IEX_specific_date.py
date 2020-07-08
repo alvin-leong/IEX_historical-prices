@@ -163,6 +163,7 @@ def asyncio_prep(date_str):
     path = get_path(date_str)
     # tickers = ['AAPL','TSLA']
     tickers = sys.argv[2]
+    print(tickers)
     # tickers = get_tickers(path)
     api_urls = [base_url.format(ticker, date_str, os.environ['TOKEN']) for ticker in tickers]
     params = {'date_str': date_str, 'path': path, 'tickers': tickers, 'api_urls': api_urls}
