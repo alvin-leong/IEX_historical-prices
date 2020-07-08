@@ -40,6 +40,7 @@ def init_logging():
 
 # Function to get a list of all dates that are to be downloaded
 def get_dates():
+    tickers = sys.argv
     
     # Get earliest date available on IEX side
     date_today = datetime.today().date()
@@ -51,9 +52,14 @@ def get_dates():
         year = max([name for name in os.listdir('output/') if not name.startswith('.')])
         foldernames = os.listdir('output/{}'.format(year))
         folder_CW = [name for name in foldernames if not name.startswith('.')]
+        
 
         for i in range(len(folder_CW)):
             foldernames = os.listdir('output/{}/{}'.format(year, folder_CW[i]))
+            donenames = os.listdir(f'output/{year}/{folder_CW[i]}/DONE')
+            for ticker in tickers:
+                if not any(ticker in s for s in donenames):
+                    raise ValueError
             folder_date += [name for name in foldernames if name.startswith('2')] #should be fine until year 3000
         last_date = datetime.strptime(max(folder_date)[0:8], '%Y%m%d').date()
 
